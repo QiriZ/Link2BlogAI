@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用指南 - 嘎嘎白话跟时事</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-light glass-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div class="logo-container">
+                    <div class="pulse-ring"></div>
+                    <div class="animated-circle"></div>
+                    <span class="logo-text">嘎嘎白话跟时事</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="guide.html"><i class="fas fa-book"></i> 使用指南</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="container mt-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card glass-panel">
+                    <div class="card-header">
+                        <h3><i class="fas fa-book me-2"></i>使用指南</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="guide-content">
+                            <section class="mb-5">
+                                <h4 class="mb-3">欢迎使用嘎嘎白话跟时事</h4>
+                                <p>这是一个AI驱动的广播内容编辑工具，专门用于将专业的AI、半导体时事文章转化为通俗易懂的广播稿件，并提供语音合成功能。下面是详细的使用说明：</p>
+                            </section>
+
+                            <section class="mb-5">
+                                <h4 class="mb-3">1. 基本使用流程</h4>
+                                <div class="guide-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>输入原始内容</h5>
+                                        <p>在左侧输入框中粘贴或输入你想要转化的原始专业文章。可以是AI研究报告、半导体行业新闻或其他专业内容。</p>
+                                        <div class="image-placeholder">
+                                            <img src="static/img/guide-1.png" alt="输入原始内容截图" class="img-fluid border rounded" onerror="this.src='https://via.placeholder.com/800x400?text=步骤1：输入原始内容'">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="guide-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>点击生成按钮</h5>
+                                        <p>填写完原始内容后，点击"生成白话内容"按钮。系统将使用AI技术将你的专业内容转化为通俗易懂的广播稿。</p>
+                                        <div class="image-placeholder">
+                                            <img src="static/img/guide-2.png" alt="点击生成按钮截图" class="img-fluid border rounded" onerror="this.src='https://via.placeholder.com/800x400?text=步骤2：点击生成按钮'">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="guide-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>查看生成结果</h5>
+                                        <p>AI处理完成后，转化后的白话内容会显示在右侧面板中。你可以直接阅读或使用复制按钮将内容复制到剪贴板。</p>
+                                        <div class="image-placeholder">
+                                            <img src="static/img/guide-3.png" alt="查看生成结果截图" class="img-fluid border rounded" onerror="this.src='https://via.placeholder.com/800x400?text=步骤3：查看生成结果'">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="guide-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h5>使用语音功能</h5>
+                                        <p>调整语音参数（语速、音量、音调和情绪），然后点击"播放"按钮收听AI广播内容。你还可以下载MP3文件保存语音内容。</p>
+                                        <div class="image-placeholder">
+                                            <img src="static/img/guide-4.png" alt="使用语音功能截图" class="img-fluid border rounded" onerror="this.src='https://via.placeholder.com/800x400?text=步骤4：使用语音功能'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="mb-5">
+                                <h4 class="mb-3">2. 进阶功能</h4>
+                                
+                                <div class="accordion" id="advancedGuide">
+                                    <div class="accordion-item glass-inner-panel">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                                <i class="fas fa-cog me-2"></i>自定义系统提示词
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#advancedGuide">
+                                            <div class="accordion-body">
+                                                <p>系统提示词决定了AI如何理解和处理你的内容。你可以展开左侧面板中的"系统提示词"部分进行自定义修改，以获得不同风格的输出结果。修改后的提示词会自动保存，下次使用时会自动加载。</p>
+                                                <p><strong>提示：</strong>你可以调整语言风格、输出长度和内容重点等参数，使结果更符合你的需求。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="accordion-item glass-inner-panel">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <i class="fas fa-fire me-2"></i>使用热点话题
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#advancedGuide">
+                                            <div class="accordion-body">
+                                                <p>底部功能区的"时事热点"板块提供了当前热门话题。点击热点右侧的"+"按钮，可以快速将热点内容插入到输入框中，无需手动搜索和输入。</p>
+                                                <p>这些热点话题会定期更新，确保你能随时了解行业内的最新动态。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="accordion-item glass-inner-panel">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <i class="fas fa-sliders-h me-2"></i>调整语音参数
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#advancedGuide">
+                                            <div class="accordion-body">
+                                                <p>语音设置区域允许你自定义语音输出的各种参数：</p>
+                                                <ul>
+                                                    <li><strong>语速：</strong>调整语音播放的速度，范围从0.5(慢)到2.0(快)</li>
+                                                    <li><strong>音量：</strong>调整语音的大小，范围从0.1(小)到2.0(大)</li>
+                                                    <li><strong>音调：</strong>调整语音的高低，范围从-1.0(低)到1.0(高)</li>
+                                                    <li><strong>情绪：</strong>选择不同的情绪，如开心、悲伤、生气、恐惧和中性</li>
+                                                </ul>
+                                                <p>调整后，点击"播放"按钮即可听到效果。找到满意的设置后，可以点击"下载MP3"保存语音文件。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="mb-5">
+                                <h4 class="mb-3">3. 常见问题解答</h4>
+                                <div class="faq-container">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <i class="fas fa-question-circle me-2"></i>为什么内容生成需要一段时间？
+                                        </div>
+                                        <div class="faq-answer">
+                                            AI需要处理和理解专业内容，然后将其转化为通俗易懂的表达，这个过程需要一定的计算时间。通常情况下，一篇中等长度的文章处理时间在5-15秒左右。
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <i class="fas fa-question-circle me-2"></i>如何获得更好的转化效果？
+                                        </div>
+                                        <div class="faq-answer">
+                                            提供完整的原始内容，包括背景信息和上下文。避免使用过多的专业缩写。如果对结果不满意，可以尝试调整系统提示词，或者重新组织原始内容的结构。
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <i class="fas fa-question-circle me-2"></i>语音文件可以商用吗？
+                                        </div>
+                                        <div class="faq-answer">
+                                            语音合成功能使用的是MiniMax T2A v2接口，请参考MiniMax的服务条款了解具体的使用权限和限制。通常情况下，个人学习和非商业用途是允许的，但商业用途可能需要额外的授权。
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部版权信息 -->
+    <footer class="footer mt-5 py-3 text-center text-muted">
+        <div class="container">
+            <p>© 2025 嘎嘎白话跟时事 · AI广播编辑器</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS 和 Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义脚本 -->
+    <script src="static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 - 嘎嘎白话跟时事</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar navbar-expand-lg navbar-light glass-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div class="logo-container">
+                    <div class="pulse-ring"></div>
+                    <div class="animated-circle"></div>
+                    <span class="logo-text">嘎嘎白话跟时事</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guide.html"><i class="fas fa-book"></i> 使用指南</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="container mt-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card glass-panel">
+                    <div class="card-header">
+                        <h3><i class="fas fa-info-circle me-2"></i>关于我们</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="about-content">
+                            <section class="mb-5">
+                                <h4 class="special-heading mb-4">嘎嘎白话跟时事是什么？</h4>
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <p>嘎嘎白话跟时事是一款专为AI和半导体领域设计的内容转换工具，它能将晦涩难懂的专业内容转化为通俗易懂的广播稿件。</p>
+                                        <p>我们的使命是让复杂的科技知识变得简单，让每个人都能听懂最前沿的技术发展。不管你是科技爱好者、学生、教育工作者，还是媒体从业人员，嘎嘎白话都能帮你轻松理解和传播科技知识。</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <div class="about-icon pulse">
+                                            <i class="fas fa-microphone-alt fa-4x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="mb-5 special-section">
+                                <h4 class="special-heading mb-4">我们的特色</h4>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-brain"></i>
+                                            </div>
+                                            <h5>强大的AI转换</h5>
+                                            <p>基于MiniMax Text-01模型，能够理解深奥的技术内容，并将其转化为生动有趣的表达。</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-volume-up"></i>
+                                            </div>
+                                            <h5>专业的语音合成</h5>
+                                            <p>使用MiniMax T2A v2接口，提供高质量的语音输出，支持多种参数调节，打造最佳听觉体验。</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-user-edit"></i>
+                                            </div>
+                                            <h5>个性化定制</h5>
+                                            <p>可自定义系统提示词和语音参数，根据不同需求生成不同风格的内容。</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-fire"></i>
+                                            </div>
+                                            <h5>时事热点推荐</h5>
+                                            <p>及时更新科技领域最新热点，一键插入，让你的内容永远紧跟时代潮流。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="mb-5">
+                                <h4 class="special-heading mb-4">技术支持</h4>
+                                <div class="tech-support">
+                                    <p>嘎嘎白话跟时事采用以下技术支持：</p>
+                                    <div class="row align-items-center g-4">
+                                        <div class="col-md-4 text-center">
+                                            <div class="tech-card">
+                                                <img src="https://via.placeholder.com/150x80?text=MiniMax" alt="MiniMax API" class="img-fluid mb-2">
+                                                <h5>MiniMax API</h5>
+                                                <p>提供强大的文本处理和语音合成能力</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="tech-card">
+                                                <img src="https://via.placeholder.com/150x80?text=Bootstrap" alt="Bootstrap 5" class="img-fluid mb-2">
+                                                <h5>Bootstrap 5</h5>
+                                                <p>构建响应式、移动优先的现代网页</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="tech-card">
+                                                <img src="https://via.placeholder.com/150x80?text=JavaScript" alt="原生JavaScript" class="img-fluid mb-2">
+                                                <h5>原生JavaScript</h5>
+                                                <p>提供流畅的交互体验和功能实现</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="mb-5">
+                                <h4 class="special-heading mb-4">团队介绍</h4>
+                                <div class="team-section">
+                                    <div class="row g-4 justify-content-center">
+                                        <div class="col-md-4 text-center">
+                                            <div class="team-member">
+                                                <div class="member-avatar">
+                                                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=designer" alt="设计师头像" class="img-fluid rounded-circle">
+                                                </div>
+                                                <h5 class="mt-3">嘎嘎设计师</h5>
+                                                <p class="text-muted">负责UI/UX设计</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="team-member">
+                                                <div class="member-avatar">
+                                                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=developer" alt="开发者头像" class="img-fluid rounded-circle">
+                                                </div>
+                                                <h5 class="mt-3">嘎嘎开发者</h5>
+                                                <p class="text-muted">负责技术实现</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="team-member">
+                                                <div class="member-avatar">
+                                                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=ai" alt="AI专家头像" class="img-fluid rounded-circle">
+                                                </div>
+                                                <h5 class="mt-3">嘎嘎AI专家</h5>
+                                                <p class="text-muted">负责AI模型优化</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="mb-5">
+                                <h4 class="special-heading mb-4">联系我们</h4>
+                                <div class="contact-section">
+                                    <p>如果你有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <div class="contact-card">
+                                                <i class="fas fa-envelope fa-2x mb-3 text-primary"></i>
+                                                <h5>电子邮件</h5>
+                                                <p>qiri4z@ifree8.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="contact-card">
+                                                <i class="fas fa-comments fa-2x mb-3 text-primary"></i>
+                                                <h5>社区讨论</h5>
+                                                <p>加入我们的在线社区</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="version-info text-center py-4">
+                                <div class="version-badge">
+                                    <span>当前版本: v1.0.0</span>
+                                    <span class="ms-3">更新日期: 2025-03-16</span>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部版权信息 -->
+    <footer class="footer mt-5 py-3 text-center text-muted">
+        <div class="container">
+            <p>© 2025 嘎嘎白话跟时事 · AI广播编辑器</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS 和 Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义脚本 -->
+    <script src="static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嘎嘎白话跟时事 - AI广播编辑器</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        /* Toast提示消息样式 */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .toast-success {
+            background-color: #4CAF50;
+        }
+        
+        .toast-warning {
+            background-color: #FFC107;
+            color: #333;
+        }
+        
+        .toast-error {
+            background-color: #F44336;
+        }
+        
+        .toast-info {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="dynamic-logo">
+                    <div class="logo-inner">
+                        <span>嘎</span>
+                    </div>
+                </div>
+                嘎嘎白话跟时事
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="homeLink">
+                            <i class="fas fa-home"></i> 首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="guideLink" data-bs-toggle="modal" data-bs-target="#guideModal">
+                            <i class="fas fa-book"></i> 使用指南
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="aboutLink" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                            <i class="fas fa-info-circle"></i> 关于
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <div class="container py-4">
+        <div class="row">
+            <!-- 左侧博客原文窗口 -->
+            <div class="col-md-6 mb-4" id="editorSection">
+                <div class="glass-card">
+                    <div class="glass-card-header">
+                        <i class="fas fa-edit icon"></i>
+                        <h2>原始文案</h2>
+                        <button class="btn btn-sm btn-outline-primary ms-auto" id="systemPromptToggle">收起</button>
+                    </div>
+                    
+                    <!-- 系统提示词区域 -->
+                    <div class="mb-3">
+                        <label for="systemPrompt" class="form-label">系统提示词：</label>
+                        <textarea class="form-control editor-area" id="systemPrompt" rows="6"></textarea>
+                        <div class="d-flex justify-content-end mt-2">
+                            <button class="btn btn-sm btn-outline-primary" onclick="window.appFunctions.saveSystemPrompt()">
+                                <i class="fas fa-save"></i> 保存提示词
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="originalText" class="form-label">要求：</label>
+                        <p>1. 请先全面的阅读一遍所有的新闻</p>
+                        <textarea class="form-control editor-area" id="originalText" rows="10" placeholder="请输入原始文本内容..."></textarea>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-primary" id="clearBtn">
+                            <i class="fas fa-trash-alt"></i> 清空
+                        </button>
+                        <button class="btn btn-primary" id="generateBtn">
+                            <i class="fas fa-magic"></i> 生成白话内容
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧语音生成窗口 -->
+            <div class="col-md-6 mb-4">
+                <div class="glass-card position-relative">
+                    <!-- 加载动画 -->
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card-header">
+                        <i class="fas fa-microphone-alt icon"></i>
+                        <h2>AI广播内容</h2>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="p-3 editor-area" id="aiOutput" contenteditable="true" style="min-height: 300px; border: 1px solid #dee2e6; border-radius: 0.25rem;"></div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-primary" id="copyBtn">
+                            <i class="fas fa-copy"></i> 复制内容
+                        </button>
+                        <button class="btn btn-primary" id="ttsBtn">
+                            <i class="fas fa-play"></i> 播放
+                        </button>
+                    </div>
+                    
+                    <!-- 语音控制区 -->
+                    <div class="mt-4">
+                        <h5 class="mb-3">语音设置</h5>
+                        
+                        <!-- 语速设置 -->
+                        <div class="range-slider">
+                            <label>
+                                <span>语速 (0.5-2.0)</span>
+                                <span id="speedValue">1.2</span>
+                            </label>
+                            <input type="range" class="form-range" id="speedSlider" min="0.5" max="2.0" step="0.1" value="1.2">
+                        </div>
+                        
+                        <!-- 音量设置 -->
+                        <div class="range-slider">
+                            <label>
+                                <span>音量 (0.1-2.0)</span>
+                                <span id="volumeValue">1</span>
+                            </label>
+                            <input type="range" class="form-range" id="volumeSlider" min="0.1" max="2.0" step="0.1" value="1">
+                        </div>
+                        
+                        <!-- 音调设置 -->
+                        <div class="range-slider">
+                            <label>
+                                <span>音调 (-1.0-1.0)</span>
+                                <span id="pitchValue">0</span>
+                            </label>
+                            <input type="range" class="form-range" id="pitchSlider" min="-1.0" max="1.0" step="0.1" value="0">
+                        </div>
+                        
+                        <!-- 情绪选择 -->
+                        <div class="mb-3">
+                            <label for="emotionSelect" class="form-label">情绪</label>
+                            <select class="form-select" id="emotionSelect">
+                                <option value="happy" selected>开心</option>
+                                <option value="sad">伤感</option>
+                                <option value="neutral">平静</option>
+                            </select>
+                        </div>
+                        
+                        <!-- 音频控制按钮 -->
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-secondary" id="stopBtn">
+                                <i class="fas fa-stop"></i> 停止
+                            </button>
+                            <button class="btn btn-outline-primary" id="downloadBtn">
+                                <i class="fas fa-download"></i> 下载MP3
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部功能区 -->
+        <div class="row">
+            <!-- 时事热点 -->
+            <div class="col-md-6 mb-4">
+                <div class="glass-card">
+                    <div class="glass-card-header">
+                        <i class="fas fa-fire icon"></i>
+                        <h2>时事热点</h2>
+                    </div>
+                    <div class="trending-list">
+                        <div class="trending-card">
+                            <div class="trending-icon code-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="trending-content">
+                                <h5>马斯克要慌了！人形机器人学会翻跟头了？</h5>
+                                <p>热度: 9.8万</p>
+                            </div>
+                            <div class="trending-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="trending-card">
+                            <div class="trending-icon ai-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="trending-content">
+                                <h5>AI编程助手Codeium喜提第1亿美元融资</h5>
+                                <p>热度: 7.3万</p>
+                            </div>
+                            <div class="trending-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="trending-card">
+                            <div class="trending-icon chip-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="trending-content">
+                                <h5>台积电发布全球首个2nm制程工艺</h5>
+                                <p>热度: 6.5万</p>
+                            </div>
+                            <div class="trending-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 社区作品 -->
+            <div class="col-md-6 mb-4">
+                <div class="glass-card">
+                    <div class="glass-card-header">
+                        <i class="fas fa-users icon"></i>
+                        <h2>社区作品</h2>
+                    </div>
+                    <div class="community-list">
+                        <div class="community-card">
+                            <div class="community-avatar">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="用户头像">
+                            </div>
+                            <div class="community-content">
+                                <h5>鹦鹉AI大模型是最新进展</h5>
+                                <p>透透之美编的可爱AI工作人工智能的大会...</p>
+                                <div class="community-meta">
+                                    <span>@AI研究者</span>
+                                    <span><i class="fas fa-heart"></i> 245</span>
+                                    <span><i class="fas fa-comment"></i> 56</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="community-card">
+                            <div class="community-avatar">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="用户头像">
+                            </div>
+                            <div class="community-content">
+                                <h5>解读平果最新芯片技术</h5>
+                                <p>大家好，今天深度解读苹果最新芯片架构...</p>
+                                <div class="community-meta">
+                                    <span>@科技达人</span>
+                                    <span><i class="fas fa-heart"></i> 189</span>
+                                    <span><i class="fas fa-comment"></i> 42</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用指南模态窗口 -->
+    <div class="modal fade" id="guideModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content glass-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-book"></i> 使用指南</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>嘎嘎白话跟时事 - 让科技新闻变得简单易懂</h4>
+                    
+                    <div class="guide-section">
+                        <h5><i class="fas fa-pencil-alt"></i> 如何使用</h5>
+                        <ol>
+                            <li>在<strong>原始文案</strong>区域粘贴您想要解读的技术新闻文章。</li>
+                            <li>点击<strong>生成白话内容</strong>按钮，AI将把专业内容转化为通俗易懂的讲解。</li>
+                            <li>生成内容后，可以点击<strong>播放</strong>按钮将文字转为语音播放。</li>
+                            <li>使用语音设置调整播放效果，包括语速、音量、音调和情绪。</li>
+                            <li>满意后可以点击<strong>下载MP3</strong>按钮保存语音文件。</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="guide-section">
+                        <h5><i class="fas fa-sliders-h"></i> 自定义系统提示词</h5>
+                        <p>您可以编辑系统提示词来调整AI的输出风格。在编辑后点击<strong>保存提示词</strong>按钮将其保存到本地设备。</p>
+                    </div>
+                    
+                    <div class="guide-section">
+                        <h5><i class="fas fa-lightbulb"></i> 使用技巧</h5>
+                        <ul>
+                            <li>提供完整的新闻文章，会得到更好的解读效果。</li>
+                            <li>生成内容后，您可以手动编辑AI输出，再进行语音合成。</li>
+                            <li>尝试不同的情绪设置，为您的广播增添个性。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">了解了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于模态窗口 -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content glass-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-info-circle"></i> 关于</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <div class="dynamic-logo mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <div class="logo-inner">
+                                <span>嘎</span>
+                            </div>
+                        </div>
+                        <h4>嘎嘎白话跟时事</h4>
+                        <p class="text-muted">版本 1.0.0</p>
+                    </div>
+                    
+                    <p>「嘎嘎白话跟时事」是一款专为普通用户设计的AI广播编辑工具，致力于将专业的科技新闻转化为通俗易懂的内容。</p>
+                    
+                    <div class="mt-4">
+                        <h5>技术支持</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success"></i> 文本生成：MiniMax Text-01</li>
+                            <li><i class="fas fa-check-circle text-success"></i> 语音合成：MiniMax T2A v2</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5>联系我们</h5>
+                        <p>如有任何问题或建议，请发送邮件至：<a href="mailto:qiri4z@ifree8.com">qiri4z@ifree8.com</a></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 主脚本文件 -->
+    <script src="static/js/main.js"></script>
+</body>
+</html>
