@@ -1,4 +1,4 @@
-# 嘎嘎白话跟时事 (GaGa Tech Talk)
+# 嘎嘎白话跟时事 (GaGa Tech Talk) AI播客自动生成器
 
 ![版本](https://img.shields.io/badge/版本-1.0.0-orange)
 ![Flask](https://img.shields.io/badge/Flask-2.0.1-blue)
@@ -7,9 +7,9 @@
 ## 项目简介
 「嘎嘎白话跟时事」是一款AI驱动的科技广播内容编辑工具，专为科技教育和普及设计。它能够将复杂的AI和半导体技术文章转化为高中生都能理解的生动内容，并提供语音合成功能，一键生成专业的广播稿件。
 
-<div align="center">
-  <img src="https://via.placeholder.com/800x400?text=嘎嘎白话跟时事截图" alt="嘎嘎白话跟时事应用截图" width="80%">
-</div>
+<p align="center">
+  <img src="main/嘎嘎白话跟时事截图.png" alt="嘎嘎白话跟时事应用截图" width="80%">
+</p>
 
 ## 功能特点
 - **智能内容转化**：将专业技术文章自动转化为通俗易懂、有趣生动的科普内容
